@@ -3,17 +3,35 @@ package fr.idm.Racing;
 public class TimeDuration {
 	private int seconds;
 	private int hours;
-	private int minuts;
-	public TimeDuration(int duration) throws BadBadValueException {
+	private int minutes;
+	private int duration;
+	public TimeDuration(int duration) throws BadValueException {
 		if (duration <0)
-			throw new BadBadValueException("un nombre negatif");
+			throw new BadValueException("un nombre negatif");
 		this.hours = duration/3600;
-		this.minuts = (duration%3600)/60;
+		this.minutes = (duration%3600)/60;
 		this.seconds = ((duration%3600)%60);
+		this.setDuration(duration);
 	}
 	@Override
 	public String toString() {
-		return hours + "h " + minuts+ "m "+ seconds+"s ";
+		return format();
+		//return hours + "h " + minutes+ "m "+ seconds+"s ";
+	}
+	private String format()
+	{
+		if (this.hours==0){
+			if(this.minutes==0)
+			{
+				return String.format("%ds ", seconds);
+			}else
+			{
+				return String.format("%1$dm %2$ds ", minutes,seconds);
+			}
+		}else
+		{
+			return String.format("%1$dh %2$dm %3$ds ",hours, minutes,seconds);
+		}
 	}
 	public int getSeconds() {
 		return seconds;
@@ -27,11 +45,17 @@ public class TimeDuration {
 	public void setHours(int hours) {
 		this.hours = hours;
 	}
-	public int getMinuts() {
-		return minuts;
+	public int getMinutes() {
+		return minutes;
 	}
-	public void setMinuts(int minuts) {
-		this.minuts = minuts;
+	public void setMinutes(int minuts) {
+		this.minutes = minuts;
+	}
+	public int getDuration() {
+		return duration;
+	}
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 	
 	

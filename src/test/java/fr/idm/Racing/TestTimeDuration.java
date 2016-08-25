@@ -1,39 +1,20 @@
 package fr.idm.Racing;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
 
-public class TestTimeDuration extends TestCase {
+import org.junit.Test;
+
+public class TestTimeDuration{
 	
-	/**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public TestTimeDuration( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( TestTimeDuration.class );
-    }
-
-    
-    public void testApp()
+    @Test
+    public void testTimeDuration()
     {
     	try {
 			TimeDuration td = new TimeDuration(10);
 			assertTrue(td.getSeconds()==10);
 			assertTrue(td.getHours()==0);
-			assertTrue(td.getMinuts()==0);
-		} catch (BadBadValueException e) {
-			fail();
+			assertTrue(td.getMinutes()==0);
+		} catch (BadValueException e) {
 			e.printStackTrace();
 		}    
     }
